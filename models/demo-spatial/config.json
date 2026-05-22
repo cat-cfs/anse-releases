@@ -1,0 +1,217 @@
+{
+  "metadata" : {
+    "author" : "Michael Magnan",
+    "date created" : "August 28th, 2025",
+    "ANSE Release Version" : "1.0.0", 
+    "description" : "Updated for new fields in EVENT_FACT and ACTION_PARAMETER_OUT objects, and rearrangment of pre-existing ACTION_PARAMETER_OUT objects",
+    "notes" : "Example note"
+  },
+
+  "options" : {
+    "delimiter" : ["<", ">"],
+    "splitter" : ";",
+    "comment" : "#",
+    "min_crumb" : 0.00000001,
+    "allow_neg" : true
+  },
+
+  "worksheet" : {
+    "commentMarker" : "COMMENT",
+    "keywordMarker" : "KEYWORD"
+  },
+
+  "grouping" : {
+    "SPATIAL" : ["ASU", "ASU_GROUP", "ASU_GROUP_MEMBER", "ASU_GROUP_TYPE"],
+    "CATEGORICAL" : ["PHYSICAL_STATE", "PHYSICAL_STATE_GROUP", "PHYSICAL_STATE_GROUP_MEMBER", "SPECIES", "SPECIES_GROUP", "SPECIES_GROUP_MEMBER"], 
+    "STRUCTURAL" : ["POOL", "EVENT", "EVENT_POOL", "ACTION_TYPE", "ACTION_PARAMETER_SET", "ACTION_PARAMETER_OUT", "ACTION_PARAMETER_IN"],
+    "CURVES" : ["CURVE", "CURVE_TYPE", "CURVE_TYPE_MEMBER", "CURVE_POINT"],
+    "CMOs" : ["INITIAL_CMO"]
+  },
+
+  "types" : {
+    "ASU" : [{
+      "ID" : { "Type" : "Integer", "Mandatory": true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "Name" : { "Type" : "String", "Mandatory": true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "Area" : { "Type" : "Double", "Mandatory": true, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Tag (name)" : { "Type" : "String", "Mandatory": false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "GIS ID" : { "Type" : "Integer", "Mandatory": false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Description" : { "Type" : "Text", "Mandatory": false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }],
+
+    "POOL" : [
+      {
+        "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+        "ASU (ID)" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : ["ASU"], "Default" : "" },
+        "Curve type (name) [retention]" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["CURVE_TYPE"], "Default" : "" },
+        "Curve type (name) [decay]" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["CURVE_TYPE"], "Default" : "" },
+        "ASU group (name) [retention]" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU_GROUP"], "Default" : "" },
+        "ASU group (name) [decay]" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU_GROUP"], "Default" : "" },
+        "Maximum carbon capacity" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+        "Allow age zero flow through (deprecated)" : { "Type" : "Boolean", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+        "Pool ruleset (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+        "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+      },
+      {
+        "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+        "ASU (ID)" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : ["ASU"], "Default" : "" },
+        "Curve type (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["CURVE_TYPE"], "Default" : "" },
+        "ASU group (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU_GROUP"], "Default" : "" },
+        "Maximum carbon capacity" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+        "Allow age zero flow through (deprecated)" : { "Type" : "Boolean", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+        "Pool ruleset (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+        "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+      }
+    ],
+
+    "PHYSICAL_STATE" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : false },
+      "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : false }
+    }],
+
+    "PHYSICAL_STATE_GROUP" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : false },
+      "Reference" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [] }
+    }],
+
+    "PHYSICAL_STATE_GROUP_MEMBER" : [{
+      "Group (name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency" : ["PHYSICAL_STATE_GROUP"] },
+      "Physical State (name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency" : ["PHYSICAL_STATE"] }
+    }],
+
+    "INITIAL_CMO" : [{
+      "Pool (name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency" : ["POOL"] },
+      "Species (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["SPECIES"] },
+      "Physical state (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["PHYSICAL_STATE"] },
+      "Carbon quantity" : { "Type" : "Double", "Mandatory" : true, "Distinct" : false, "Dependency" : [] },
+      "Timestep entering system" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [] },
+      "Age" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "Tag (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "Is retained" : { "Type" : "Boolean", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [] }
+    }],
+
+    "EVENT" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [] },
+      "Action Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Depedency" : ["ACTION_TYPE"] },
+      "ASU (ID)" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : ["ASU"] },
+      "Quantity cap per timestep" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "Target quantity per timestep" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "First timestep" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "Last timestep" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "Event Ruleset (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["EVENT_RULESET"] },
+      "ASU Group (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU_GROUP"] },
+      "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [] }
+    }],
+
+    "EVENT_POOL" : [{
+      "Event (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["EVENT"], "Default" : "" },
+      "Pool (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["POOL"], "Default" : "" },
+      "IsSource" : { "Type" : "Boolean", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Branch Number" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency": ["EVENT"], "Default" : "" },
+	  "Allows recycling" : { "Type" : "Boolean", "Mandatory" : false, "Distinct" : false, "Dependency": [], "Default" : "" }
+    }],
+
+    "ACTION_TYPE" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }],
+
+    "ACTION_PARAMETER_SET" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "Action Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ACTION_TYPE"], "Default" : "" },
+      "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
+      "Effective start timestep" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : 1 },
+      "Notes" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }],
+
+    "ACTION_PARAMETER_OUT" : [{
+      "Action_Parameter_Set (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : ["ACTION_PARAMETER_SET"], "Default" : "" },
+      "Branch Number" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Proportion" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Target" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : ""},
+      "Physical State" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["PHYSICAL_STATE"], "Default" : "" },
+      "Filter By Physical_State (Name/Group)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Filter By Species (Name/Group)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Note" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }],
+
+    "ASU_GROUP" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "ASU Group Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }],
+
+    "ASU_GROUP_MEMBER" : [
+      {
+        "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+        "ASU (ID)" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
+        "Includes: ASU GROUP (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+      },
+      {
+        "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+        "ASU (ID)" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+        "Includes: ASU GROUP (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+      }
+    ],
+
+    "ASU_GROUP_TYPE" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" }
+    }],
+
+    "CURVE" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "Usage" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "current" },
+      "Notes" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Description" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : ""}
+    }],
+
+    "CURVE_POINT" : [{
+      "Curve (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency" : ["CURVE"], "Default" : "" },
+      "X axis value" : { "Type" : "Double", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Y axis value" : { "Type" : "Double", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }],
+
+    "CURVE_TYPE" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "Notes" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Description" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }],
+
+    "CURVE_TYPE_MEMBER" : [{
+      "Curve Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["CURVE_TYPE"], "Default" : "" },
+      "Curve (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["CURVE"], "Default" : "" },
+      "ASU Group (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
+      "Effective start timestep" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : 1 }
+    }],
+
+    "SPECIES" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "Alternate Name" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Code" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Reference" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+      "Description" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }],
+
+    "SPECIES_GROUP" : [
+      {
+        "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+        "Reference" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
+        "Description" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+      }
+    ],
+
+    "SPECIES_GROUP_MEMBER" : [{
+      "Species Group (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : ["SPECIES_GROUP"], "Default" : "" },
+      "Species (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : ["SPECIES"], "Default" : "" }
+    }],
+
+    "TAG" : [{
+      "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
+      "Value" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Description" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+    }]
+  }
+}
+
