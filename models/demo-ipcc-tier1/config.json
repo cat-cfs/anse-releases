@@ -120,7 +120,7 @@
     "ACTION_PARAMETER_SET" : [{
       "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
       "Action Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ACTION_TYPE"], "Default" : "" },
-      "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
+      "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
       "Effective start timestep" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : 1 },
       "Notes" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
       "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
@@ -129,7 +129,7 @@
     "ACTION_PARAMETER_OUT" : [{
       "Action_Parameter_Set (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : ["ACTION_PARAMETER_SET"], "Default" : "" },
       "Branch Number" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
-      "Proportion" : { "Type" : "Double", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Proportion" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
       "Target" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : ""},
       "Physical State" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["PHYSICAL_STATE"], "Default" : "" },
       "Filter By Physical_State (Name/Group)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
