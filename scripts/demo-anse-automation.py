@@ -31,7 +31,7 @@ def _(mo):
 @app.cell
 def _(platform):
     ANSE_EXEC: str = "./anse.exe" if platform.system() == "Windows" else "./anse"
-    ANSE_DIR: str = "/Users/shxie/projects/anse-core-engine/dist/osx-arm64/"
+    ANSE_DIR: str = "/Users/shxie/projects/anse-core-engine/dist/anse-mac/"
     return ANSE_DIR, ANSE_EXEC
 
 
@@ -202,7 +202,7 @@ def _(anse_converter, anse_importer, anse_simulator, os):
 
     if anse_converter(xlsx_i):
         if anse_importer(workspace):
-            anse_simulator(workspace, duration=35, start_timestep=1990)
+            anse_simulator(workspace, duration=100, start_timestep=1)
         else:
             print("❌ Aborting simulation.")
     else:

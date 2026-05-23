@@ -120,7 +120,7 @@
     "ACTION_PARAMETER_SET" : [{
       "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
       "Action Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ACTION_TYPE"], "Default" : "" },
-      "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
+      "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
       "Effective start timestep" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : 1 },
       "Notes" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
       "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
@@ -182,7 +182,7 @@
     "CURVE_TYPE_MEMBER" : [{
       "Curve Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["CURVE_TYPE"], "Default" : "" },
       "Curve (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["CURVE"], "Default" : "" },
-      "ASU Group (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
+      "ASU Group (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
       "Effective start timestep" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : 1 }
     }],
 
