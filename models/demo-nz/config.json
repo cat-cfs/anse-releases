@@ -93,7 +93,7 @@
 
     "EVENT" : [{
       "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [] },
-      "Action Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Depedency" : ["ACTION_TYPE"] },
+      "Action Type (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Depedency" : ["ACTION_TYPE"] },
       "ASU (ID)" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : ["ASU"] },
       "Quantity cap per timestep" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
       "Target quantity per timestep" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
