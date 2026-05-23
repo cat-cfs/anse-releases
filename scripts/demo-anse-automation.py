@@ -297,7 +297,7 @@ def _(os, roundwood_harvest, workspace):
             p = y["Item"]
             # Ensure the value is numeric before multiplying
             q = float(y["Value"]) * C_Factor["roundwood"]
-            yr = y["Year"]
+            yr = int(y["Year"]) - 1989
 
             # Construct the <INITIAL_CMO> entry
             # Format: <INITIAL_CMO>Entry Pool;Species;Physical_State;Quantity;Entry timestep;Initial Age;Tag;Is Retained;Description 
@@ -323,7 +323,7 @@ def _(anse_converter, anse_importer, anse_simulator, os):
     # model_list_multi = ["demo-hwp101"]
     # # loop through the model_list
     for mm in model_list_multi:
-        if mm not in ("demo-cbm-hwp", "demo-recycling"):
+        if mm not in ("demo-cbm-hwp", "ireland-hwp-updated"):
             print(mm)
             workspace_multi = os.path.join(models_dir_multi, mm)
             xlsx_i_multi = os.path.join(workspace_multi, mm + ".xlsx")

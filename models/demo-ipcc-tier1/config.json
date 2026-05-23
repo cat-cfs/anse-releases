@@ -126,16 +126,28 @@
       "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
     }],
 
-    "ACTION_PARAMETER_OUT" : [{
+    "ACTION_PARAMETER_OUT" : [
+      {
       "Action_Parameter_Set (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : ["ACTION_PARAMETER_SET"], "Default" : "" },
       "Branch Number" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
-      "Proportion" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Proportion" : { "Type" : "Double", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
       "Target" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : ""},
       "Physical State" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["PHYSICAL_STATE"], "Default" : "" },
       "Filter By Physical_State (Name/Group)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
       "Filter By Species (Name/Group)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
       "Note" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
-    }],
+      },
+      {
+      "Action_Parameter_Set (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : ["ACTION_PARAMETER_SET"], "Default" : "" },
+      "Branch Number" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Proportion" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Target" : { "Type" : "Double", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : ""},
+      "Physical State" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["PHYSICAL_STATE"], "Default" : "" },
+      "Filter By Physical_State (Name/Group)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Filter By Species (Name/Group)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
+      "Note" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
+      }
+    ],
 
     "ASU_GROUP" : [{
       "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
