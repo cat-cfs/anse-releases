@@ -41,7 +41,7 @@
     "POOL" : [
       {
         "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
-        "ASU (ID)" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : ["ASU"], "Default" : "" },
+        "ASU (ID)" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU"], "Default" : "" },
         "Curve type (name) [retention]" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["CURVE_TYPE"], "Default" : "" },
         "Curve type (name) [decay]" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["CURVE_TYPE"], "Default" : "" },
         "ASU group (name) [retention]" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU_GROUP"], "Default" : "" },
@@ -53,7 +53,7 @@
       },
       {
         "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
-        "ASU (ID)" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : ["ASU"], "Default" : "" },
+        "ASU (ID)" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU"], "Default" : "" },
         "Curve type (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["CURVE_TYPE"], "Default" : "" },
         "ASU group (name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU_GROUP"], "Default" : "" },
         "Maximum carbon capacity" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
@@ -94,7 +94,7 @@
     "EVENT" : [{
       "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [] },
       "Action Type (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Depedency" : ["ACTION_TYPE"] },
-      "ASU (ID)" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : ["ASU"] },
+      "ASU (ID)" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : ["ASU"] },
       "Quantity cap per timestep" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
       "Target quantity per timestep" : { "Type" : "Double", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
       "First timestep" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [] },
@@ -120,7 +120,7 @@
     "ACTION_PARAMETER_SET" : [{
       "Name" : { "Type" : "String", "Mandatory" : true, "Distinct" : true, "Dependency" : [], "Default" : "" },
       "Action Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ACTION_TYPE"], "Default" : "" },
-      "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
+      "ASU_GROUP (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
       "Effective start timestep" : { "Type" : "Integer", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : 1 },
       "Notes" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" },
       "Description" : { "Type" : "Text", "Mandatory" : false, "Distinct" : false, "Dependency" : [], "Default" : "" }
@@ -182,7 +182,7 @@
     "CURVE_TYPE_MEMBER" : [{
       "Curve Type (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["CURVE_TYPE"], "Default" : "" },
       "Curve (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["CURVE"], "Default" : "" },
-      "ASU Group (Name)" : { "Type" : "String", "Mandatory" : true, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
+      "ASU Group (Name)" : { "Type" : "String", "Mandatory" : false, "Distinct" : false, "Dependency": ["ASU_GROUP"], "Default" : "" },
       "Effective start timestep" : { "Type" : "Integer", "Mandatory" : true, "Distinct" : false, "Dependency" : [], "Default" : 1 }
     }],
 
